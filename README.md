@@ -4,82 +4,58 @@
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
-<!-- [![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url] -->
 
-
-
-<!-- PROJECT LOGO -->
 <br />
 <div align="center">
+  <h2 align="center">AgentWrite: Autonomous Content Pipeline</h2>
 
-  <h2 align="center">AgentWrite</h2>
-
-  <p align="center">
-    AI-Powered Multi-Agent System for Automated Essay Writing
-    <br/>
-    <small>Made with ❤️ by Deep Rodge</small><br>
-    <!-- <a href="https://github.com/deeprodge/AgentWrite"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/deeprodge/AgentWrite">View Demo</a>
-    · -->
-    <a href="https://github.com/deeprodge/AgentWrite/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/deeprodge/AgentWrite/issues">Request Feature</a>
-  </p>
+  <p align="center">
+    An Autonomous, Multi-Agent System for SEO-Optimized Content Generation
+    <br/>
+    <small>Made with ❤️ by Deep Rodge</small><br>
+    <a href="https://github.com/deeprodge/AgentWrite/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/deeprodge/AgentWrite/issues">Request Feature</a>
+  </p>
 </div>
 
-
-
-<!-- TABLE OF CONTENTS -->
 <details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#key-features">Key Features</a></li>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#key-features">Key Features</a></li>
         <li><a href="#system-architecture">System Architecture</a></li>
-        <li><a href="#workflow">Workflow</a></li>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li><a href="#contributing">Contributing</a></li>
-    <!-- <li><a href="#license">License</a></li> -->
-    <li><a href="#contact">Contact</a></li>
-  </ol>
+        <li><a href="#workflow">Workflow</a></li>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
 </details>
 
-
-
-<!-- ABOUT THE PROJECT -->
 ## About The Project
 <br>
 <p>
-AgentWrite is a sophisticated multi-agent system designed for automated essay writing. It leverages advanced AI technologies to create comprehensive, well-researched essays on given topics through an automated, iterative process. <br>
+AgentWrite is an autonomous content generation pipeline designed to address the challenges of scaling content marketing. It mimics the workflow of a professional SEO and content creation team by using a collaborative multi-agent system to research, draft, and refine high-quality, SEO-optimized articles.
 
-
-
+This project moves beyond simple text generation by creating a strategic system where AI agents collaborate to produce content that is not only well-written but also engineered to rank on search engines.
 </p>
 
 ### Key Features
 
-- <b>Multi-Agent Architecture</b>: Utilizes a modular system with specialized agents for different tasks.
-- <b>AI-Powered Writing</b>: Employs OpenAI's GPT-3.5-turbo model for essay planning, writing, and critiquing.
-- <b>Automated Research</b>: Integrates Tavily API for efficient online research.
-- <b>Iterative Improvement</b>: Implements an AI-driven feedback loop for continuous essay refinement.
-- <b>Complex Workflow Management</b>: Uses langgraph for orchestrating intricate agent interactions.
-
+- <b>Multi-Agent Collaboration</b>: Utilizes a modular system where specialized agents collaborate on content strategy, research, and creation.
+- <b>Strategic Content Creation</b>: Employs LLMs (GPT-3.5-turbo) for drafting content that is strategically aligned with SEO goals.
+- <b>Real-Time Market Research</b>: Integrates the Tavily API to perform real-time analysis of Search Engine Results Pages (SERPs).
+- <b>Automated Quality Assurance</b>: Implements an AI-driven feedback loop where a "Critique Agent" acts as an editor, ensuring content meets quality and SEO standards.
+- <b>Cyclical Workflow Management</b>: Uses LangGraph to orchestrate the sophisticated, iterative interactions between agents as shown in the architecture.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### System Architecture
-The system is composed of several modular components:
-- <b>Planning Node</b>: Outlines the essay structure and main points.
-- <b>Research Node</b>: Gathers relevant information using Tavily API.
-- <b>Essay Generation Node</b>: Produces the initial draft using GPT-3.5-turbo.
-- <b>Reflection and Critique Node</b>: Analyzes and provides feedback on the essay.
+The system is built on a directed acyclic graph (DAG) managed by LangGraph, where each node represents a specialized agent performing a distinct task.
 
 <br>
 <div>
@@ -87,19 +63,24 @@ The system is composed of several modular components:
 </div>
 <br>
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+-   **Planner Node**: Acts as the **SEO Strategist**. It receives the initial topic and creates a high-level content plan, outlining the structure and key points required to rank.
+-   **Research Plan Node**: Takes the strategic outline and formulates a detailed research plan, generating specific search queries to gather data on competitor articles and authoritative sources via the Tavily API.
+-   **Generate Node**: Functions as the **Content Drafter**. It executes the research plan, synthesizes the gathered information, and writes the initial draft of the article.
+-   **Reflect & Research Critique Nodes**: These nodes form the **Automated Quality Assurance** loop. The `reflect` node performs a self-correction check, while the `research_critique` node conducts a formal audit against SEO best practices, generating actionable feedback.
 
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Workflow
-1. Initial topic research
-2. Essay planning
-3. Draft generation
-4. AI-powered reflection and critique
-5. Rewriting and refinement
-6. Repeat steps 4-5 until satisfactory results are achieved
+The content generation process directly follows the flow of the architecture graph:
+
+1.  **Planning**: The process starts at the `__start__` node and moves to the **Planner**, which creates a strategic content outline.
+2.  **Research Strategy**: The **Research Plan** node translates this outline into actionable search queries.
+3.  **Draft Generation**: The **Generate** node executes the research and writes the first draft.
+4.  **Audit & Critique**: The draft is passed to the **Reflect** and **Research Critique** nodes, which audit it for quality and SEO compliance.
+5.  **Iterative Refinement**: The actionable feedback from the critique is fed back to the **Generate** node, which rewrites the draft to incorporate the suggestions.
+6.  **Completion**: This cycle of generation and critique continues until the article meets a predefined quality standard, at which point the graph transitions to the `__end__` node.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
 
 ### Built With
 
@@ -109,15 +90,8 @@ The system is composed of several modular components:
 * [OpenAI](https://openai.com/)
 * [Tavily](https://tavily.com/)
 
-
-
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
-
-
-<!-- CONTRIBUTING -->
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -133,13 +107,6 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
-
-
-
-
-<!-- CONTACT -->
 ## Contact
 
 Deep Rodge - [LinkedIn](https://linkedin.com/in/deeprodge) - deeprodge14@gmail.com
@@ -148,21 +115,11 @@ Project Link: [https://github.com/deeprodge/AgentWrite](https://github.com/deepr
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/deeprodge/AgentWrite
 [contributors-url]: https://github.com/deeprodge/AgentWrite/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/deeprodge/AgentWrite.svg?style=for-the-badge
-[forks-url]: https://github.com/deeprodge/AgentWrite/network/members
-[stars-shield]: https://img.shields.io/github/stars/deeprodge/AgentWrite.svg?style=for-the-badge
-[stars-url]: https://github.com/deeprodge/AgentWrite/stargazers
 [issues-shield]: https://img.shields.io/github/issues/deeprodge/AgentWrite.svg?style=for-the-badge
 [issues-url]: https://github.com/deeprodge/AgentWrite/issues
 [license-shield]: https://img.shields.io/github/license/deeprodge/AgentWrite.svg?style=for-the-badge
 [license-url]: https://github.com/deeprodge/AgentWrite/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/deeprodge
-[product-screenshot]: images/screenshot.png
